@@ -1,0 +1,57 @@
+line-length = 88
+target-version = "py313"
+extend-exclude = [
+  ".github",
+  ".hg",
+  ".env",
+  "env",
+  "build",
+  "buck-out",
+  "media",
+]
+fix = true
+
+[lint]
+select = [
+  "A",
+  "B",
+  "C4",
+  "D",
+  "E",
+  "F",
+  "I",
+  "PGH",
+  "PT",
+  "SIM",
+  "UP",
+]
+
+ignore = [
+  # docstring ignores - mostly stylistic
+  "D1",
+  "D203",
+  "D205",
+  "D212",
+  "D4",
+  # Exception too broad (this would require lots of changes + re.escape) for little benefit
+  "PT011",
+  # as recommended by https://docs.astral.sh/ruff/formatter/#conflicting-lint-rules
+  "D206",
+  "D300",
+  "E111",
+  "E114",
+  "E117",
+  "E501",
+]
+
+# Allow unused variables when underscore-prefixed.
+dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
+
+[lint.flake8-pytest-style]
+fixture-parentheses = false
+
+[lint.pydocstyle]
+convention = "google"
+
+[format]
+docstring-code-format = true

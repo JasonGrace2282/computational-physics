@@ -1,0 +1,32 @@
+name: CI
+on:
+  - push
+  - pull_request
+
+env:
+  CI: 1
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Set up repo
+        uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          version: 0.5.x
+          enable-cache: true
+          python-version: 3.13
+
+      - name: Check code style
+        run: uv run just lint
+
+      - name: Run tests
+        run: uv run just test
