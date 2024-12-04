@@ -25,4 +25,5 @@ def f(t, v):
     ],
 )
 def test_euler(t, n):
-    assert ode.euler(f, v0, T, N) - g * T < 1e-10
+    assert ode.euler(f, v0, T, N) - g * t < 1e-10
+    assert ode.runge_kutta(f, v0, T, N) - g * t < 1e-10
